@@ -78,19 +78,14 @@ def all_supplies_in_holidays(holiday_hash)
   #   :winter => {
   #     :christmas => ["Lights", "Wreath"],
   #     :new_years => ["Party Hats"]
-  holiday_hash.each do |season, holidays_hash|
-    puts "#{season.to_s.capitalize}:"
-    holidays_hash.each do |holiday, supply_array|
-      holiday_string = holiday.to_s
-      holiday_array = holiday_string.split('_')
-      holiday_array.each_with_index do |holiday, index|
-          holiday[index] = holiday.capitalize
-      end
-      formatted_holiday = holiday_array.join
-      formatted_supplies = supply_array.join(", ")
-      puts "  #{formatted_holiday}: #{formatted_supplies}"
+
+  holiday_hash.each do |season, holidays|
+    puts "#{season.capitalize}:"
+    holidays.each do |holiday, supplies|
+      puts"  #{holiday.to_s.split('_').map {|w| w.capitalize }.join(' ') }: #{supplies.join(", ")}"
     end
   end
+end
 end
 
 def all_holidays_with_bbq(holiday_hash)
